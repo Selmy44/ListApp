@@ -1,0 +1,100 @@
+body{
+  text-transform: capitalize;
+  background-color: #07a098;
+  background-size: contain;
+  background-attachment: fixed;
+  color: #000000;
+  }
+
+a:link, a:visited{
+                  background-color: #000000; 
+                  color: #d2e716;
+                  padding: 0px 20px;
+                  border-radius: 15px;
+                  text-align: center;
+                  text-decoration: none;
+                  display: inline-block;
+                  
+                }
+
+a:hover{
+          background-color: #d2e716;
+          color: #000000;
+        }        
+
+a:active{
+          background-color: #07a098;
+          color: #ffffff;
+        }
+
+h1.one{
+        color: #000000;;
+        line-height: normal;
+        white-space: nowrap;
+        word-spacing: 5px;
+        text-shadow: 3px 1px 10px #ff0000;
+
+      } 
+
+ol {
+        background: #ff9999;
+        padding: 20px;
+      }
+      
+ul {
+        background: #3399ff;
+        padding: 20px;
+      }
+      
+ol li {
+        background: #ffe5e5;
+        color: darkred;
+        padding: 5px;
+        margin-left: 35px;
+      }
+      
+ul li {
+        background: #cce5ff;
+        color: darkblue;
+        margin: 5px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      tr:hover {background-color: coral;}      
+h1.two{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-style: italic;
+        font-size: x-large;
+        font-weight: 900;
+        color: #000000;
+
+      }
+.first{
+        letter-spacing: 5px;
+        text-decoration: underline;
+        text-align: center;
+        border: 2px solid #000000;
+        background-color: #a8a8a8;
+        opacity: 0.8;
+      }
+
+.main{
+        border-image-repeat: repeat;
+        color: #000000;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      }
+.calling{
+          color: #a8a8a8;
+          font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+/* you have to add codes here */
