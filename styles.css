@@ -6,7 +6,9 @@ body{
   color: #000000;
   }
 
-a:link, a:visited{
+a:link /*a normal, unvisited link*/, a:visited /*a link the user has visited*/
+                
+                {
                   background-color: #000000; 
                   color: #d2e716;
                   padding: 0px 20px;
@@ -17,12 +19,14 @@ a:link, a:visited{
                   
                 }
 
-a:hover{
+a:hover /*a link when the user mouses over it*/
+        {
           background-color: #d2e716;
           color: #000000;
         }        
 
-a:active{
+a:active /*a link the moment it is clicked*/
+        {
           background-color: #07a098;
           color: #ffffff;
         }
