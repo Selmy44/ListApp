@@ -15,7 +15,7 @@
             document.getElementById("palma2").innerHTML= answer;
             document.getElementById("palma4").innerHTML= palma3;
         }
-
+                                  
         // Create an Array:
         const cars = ["Saab", "Volvo", "BMW"];
 
