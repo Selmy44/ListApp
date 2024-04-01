@@ -1,19 +1,6 @@
-
-        function appendToDisplay(value) {
-            document.getElementById('display').value += value;
-        }
-
-        function clearDisplay() {
-            document.getElementById('display').value = '';
-        }
-
-        function calculate() {
-            var displayValue = document.getElementById('display').value;
-
-            try {
-                var result = eval(displayValue);
-                document.getElementById('display').value = result;
-            } catch (error) {
-                document.getElementById('display').value = 'Error';
-            }
-        }
+function myFunction(){
+    let a=3;
+    let b=3;
+    let c=a+b;
+    document.getElementById("demo").innerHTML=c;
+}
