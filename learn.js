@@ -15,6 +15,20 @@
             document.getElementById("palma2").innerHTML= answer;
             document.getElementById("palma4").innerHTML= palma3;
         }
+        //The Functions
+        function good(a){
+            return (3) * a;
+        }
+        let x = good(3);
+        document.getElementById("well").innerHTML= x;
+
+        function toCelsius(f) {
+            return (5/9) * (f-32);
+          }
+          
+          let value = toCelsius(77);
+          document.getElementById("well1").innerHTML = value;
+        //The End of Functions
 
         // Create an Array:
         const cars = ["Saab", "Volvo", "BMW"];
