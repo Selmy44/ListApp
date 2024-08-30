@@ -19,13 +19,26 @@
             const d = new Date();
             document.getElementById("miami2").innerHTML = d;
         }
+
+        function apitest() {
+                    const name = apitest;
+                    document.getElementById("api").innerHTML = name;
+
+        }
+
         //The Functions
         function good(a){
             return (3) * a;
         }
         let x = good(3);
         document.getElementById("well").innerHTML= x;
-        
+
+        // const good2=(a)=>{
+        //             return a;
+        // }
+        // const good2=(a)=>{
+        //         return a;
+        // }
         function toCelsius(f) {
             return (5/9) * (f-32);
           }
@@ -85,6 +98,7 @@
             let x = 6;
             let y = 4;
             document.getElementById("miami3").innerHTML = !(x === y) + "<br>" + !(x > y);
+            document.getElementById("montecarlo").innerHTML = !( y === y ) + "<br>" + !(x > y);
         }
 
         function conditions() {
