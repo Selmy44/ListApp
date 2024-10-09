@@ -1,104 +1,110 @@
-body{
-  text-transform: capitalize;
-  background-color: #2b5252;
-  background-size: contain;
-  background-attachment: fixed;
-  color: #000000;
-  }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.nav-right {
+    background-color: rgb(6, 177, 134);
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+}
+.nav-left {
+    display: flex;
+    gap: 1px;
+}
+.nav-left a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.nav-left a:hover {
+    /* background-color: rgb(70, 70, 70); */
+    border-radius: 5px;
+    text-decoration: none;
+}
+.nav-left a:visited {
+    color: white;
+    background-color: rgb(70, 70, 70);
+    text-decoration:none;
 
-a:link /*a normal, unvisited link*/, a:visited /*a link the user has visited*/
-                
-                {
-                  background-color: #000000; 
-                  color: #d2e716;
-                  padding: 0px 20px;
-                  border-radius: 15px;
-                  text-align: center;
-                  text-decoration: none;
-                  display: inline-block;
-                  
-                }
+}
+.secondary-nav {
+    text-align: center;
+    background-color: #f8f8f8;
+    padding: 10px;
+}
+.secondary-nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
 
-a:hover /*a link when the user mouses over it*/
-        {
-          background-color: #d2e716;
-          color: #000000;
-        }        
+.secondary-nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
 
-a:active /*a link the moment it is clicked*/
-        {
-          background-color: #07a098;
-          color: #ffffff;
-        }
+.secondary-nav ul li a {
+    text-decoration: none;
+    color: rgb(6, 177, 134);
+    padding: 5px 10px;
+}
+.secondary-nav ul li a:hover {
+    background-color: rgb(70, 70, 70);
+    border-radius: 5px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+select {
+    padding: 9px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 6px;
+}
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
 
-h1.one{
-        color: #000000;;
-        line-height: normal;
-        white-space: nowrap;
-        word-spacing: 5px;
-        text-shadow: 3px 1px 10px #ff0606;
+nav ul {
+    list-style: none;
+    padding: 0;
+}
 
-      } 
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
 
-ol {
-        background: #ff9999;
-        padding: 20px;
-      }
-      
-ul {
-        background: #3399ff;
-        padding: 20px;
-      }
-      
-ol li {
-        background: #ffe5e5;
-        color: darkred;
-        padding: 5px;
-        margin-left: 35px;
-      }
-      
-ul li {
-        background: #cce5ff;
-        color: darkblue;
-        margin: 5px;
-      }
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
 
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-      
-      th, td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-      }
-      
-      tr:hover {background-color: coral;}      
-h1.two{
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-style: italic;
-        font-size: x-large;
-        font-weight: 900;
-        color: #000000;
+main {
+    padding: 20px;
+}
 
-      }
-.first{
-        letter-spacing: 5px;
-        text-decoration: underline;
-        text-align: center;
-        border: 2px solid #000000;
-        background-color: #a8a8a8;
-        opacity: 0.8;
-      }
+section {
+    margin-bottom: 40px;
+}
 
-.main{
-        border-image-repeat: repeat;
-        color: #000000;
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-      }
-.calling{
-          color: #a8a8a8;
-          font-family: Georgia, 'Times New Roman', Times, serif;
-        }
-/* you have to add codes here */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
