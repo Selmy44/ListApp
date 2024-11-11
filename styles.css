@@ -1,104 +1,104 @@
-.wheel {
-    border: 2px solid black;
-    border-radius: 50%;
-    margin-left: 50px;
-    position: absolute;
-    height: 55vw;
-    width: 55vw;
-    max-width: 500px;
-    max-height: 500px;
-    animation-name: wheel;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+body{
+  text-transform: capitalize;
+  background-color: #2b5252;
+  background-size: contain;
+  background-attachment: fixed;
+  color: #000000;
   }
 
-  .line {
-    background-color: black;
-    width: 50%;
-    height: 2px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform-origin: 0% 0%;
-  }
-  
-  .line:nth-of-type(2) {
-    transform: rotate(60deg);
-  }
-  .line:nth-of-type(3) {
-    transform: rotate(120deg);
-  }
-  .line:nth-of-type(4) {
-    transform: rotate(180deg);
-  }
-  .line:nth-of-type(5) {
-    transform: rotate(240deg);
-  }
-  .line:nth-of-type(6) {
-    transform: rotate(300deg);
-  }
-  
-  .cabin {
-    background-color: red;
-    width: 20%;
-    height: 20%;
-    position: absolute;
-    border: 2px solid;
-    transform-origin: 50% 0%;
-    animation: cabins 10s ease-in-out infinite;
-  }
-  
-  .cabin:nth-of-type(1) {
-    right: -8.5%;
-    top: 50%;
-  }
-  .cabin:nth-of-type(2) {
-    right: 17%;
-    top: 93.5%;
-  }
-  .cabin:nth-of-type(3) {
-    right: 67%;
-    top: 93.5%;
-  }
-  .cabin:nth-of-type(4) {
-    left: -8.5%;
-    top: 50%;
-  }
-  .cabin:nth-of-type(5) {
-    left: 17%;
-    top: 7%;
-  }
-  .cabin:nth-of-type(6) {
-    right: 17%;
-    top: 7%;
-  }
-  
-  @keyframes wheel {
-     0% {
-       transform: rotate(0deg);
-     }
-     100% {
-       transform: rotate(360deg);
-     }
-  }
-  
-  @keyframes cabins {
-    0% {
-      transform: rotate(0deg);
-    }
-    25% {
-      background-color: yellow;
-    }
-    50% {
-      background-color: purple;
-    }
-  
-    75%{
-      background-color: yellow;
-    }
-  
-    100% {
-      transform: rotate(-360deg);
-    }
-  }
+a:link /*a normal, unvisited link*/, a:visited /*a link the user has visited*/
+                
+                {
+                  background-color: #000000; 
+                  color: #d2e716;
+                  padding: 0px 20px;
+                  border-radius: 15px;
+                  text-align: center;
+                  text-decoration: none;
+                  display: inline-block;
+                  
+                }
+
+a:hover /*a link when the user mouses over it*/
+        {
+          background-color: #d2e716;
+          color: #000000;
+        }        
+
+a:active /*a link the moment it is clicked*/
+        {
+          background-color: #07a098;
+          color: #ffffff;
+        }
+
+h1.one{
+        color: #000000;;
+        line-height: normal;
+        white-space: nowrap;
+        word-spacing: 5px;
+        text-shadow: 3px 1px 10px #ff0606;
+
+      } 
+
+ol {
+        background: #ff9999;
+        padding: 20px;
+      }
+      
+ul {
+        background: #3399ff;
+        padding: 20px;
+      }
+      
+ol li {
+        background: #ffe5e5;
+        color: darkred;
+        padding: 5px;
+        margin-left: 35px;
+      }
+      
+ul li {
+        background: #cce5ff;
+        color: darkblue;
+        margin: 5px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      tr:hover {background-color: coral;}      
+h1.two{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-style: italic;
+        font-size: x-large;
+        font-weight: 900;
+        color: #000000;
+
+      }
+.first{
+        letter-spacing: 5px;
+        text-decoration: underline;
+        text-align: center;
+        border: 2px solid #000000;
+        background-color: #a8a8a8;
+        opacity: 0.8;
+      }
+
+.main{
+        border-image-repeat: repeat;
+        color: #000000;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      }
+.calling{
+          color: #a8a8a8;
+          font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+/* you have to add codes here */
