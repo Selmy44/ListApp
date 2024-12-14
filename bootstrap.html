@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <title>Nshuti's Car DealerShip</title>
+    <style>
+        body {
+            position: relative;
+            }
+    </style>
+</head>
+<body style="height:1500px">
+
+    <h1 class="container mt-3 text-danger">Car DealerShip</h1>
+    <div class="container mt-3">
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Logo</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">DropDown</a>
+                  <ul class="dropdown-menu">
+                      <li><a href="#" class="dropdown-item">Link 1</a></li>
+                      <li><a href="#" class="dropdown-item">Link 2</a></li>
+                      <li><a href="#" class="dropdown-item">Link 3</a></li>
+                  </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <br>
+    <div>
+    <nav class="navbar-expand-sm navbar-dark bg-dark ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="javascript:void(0)">NSHUTI</a>
+            <!--NavBar Links-->
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">Link</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="javascript:void(0)" class="nav-link">Link</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="javascript:void(0)" class="nav-link">Link</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                    <input type="text" placeholder="search" class="form-control me-2">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+  </div>
+</div>
+  <br>
+    <div class="container mt-3">
+    <br>
+
+    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+        <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+          
+        </div>
+        
+        <!-- The slideshow/carousel -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/Pictures/car pic1.webp" alt="Los Angeles" class="d-block" style="width:100%">
+            <div class="carousel-caption">
+                <h3>Lamborghini Urus</h3>
+                <p>Designed by Mansory</p>
+              </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/Pictures/g-class.webp" alt="New York" class="d-block" style="width:100%">
+            <div class="carousel-caption">
+                <h3>G - Class Brabus</h3>
+                <p>Designed by Mansory</p>
+            </div>
+          </div>
+        </div>
+        <!-- Left and right controls/icons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+      <br><br>
+
+      <div class="container mt-3">
+        <h3 class="text-success">BUY THIS CAR</h3>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+          B U Y
+        </button>
+      </div>
+      
+      <!-- The Modal -->
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Prices</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div>
+                    <p>Lamborghini Urus : $ 210,000</p>
+                    <button type="button" class="btn btn-primary btn-sm">BUY</button>
+                    <button type="button" class="btn btn-primary btn-sm">Add to Cart</button>
+                </div>
+                <br>
+                <div>
+                    <p>Brabus G-Class   : $ 115,000</p>
+                    <button type="button" class="btn btn-primary btn-sm">BUY</button>
+                    <button type="button" class="btn btn-primary btn-sm">Add to cart</button>
+                </div>
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+
+      <div>
+            <div class="offcanvas offcanvas-end text-bg-dark" id="demo">
+                    <div class="offcanvas-header">
+                        <h1 class="offcanvas-title">Heading</h1>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <p>Some text lorem ipsum.</p>
+                        <p>Some text lorem ipsum.</p>
+                        <p>Some text lorem ipsum.</p>
+                        <button class="btn btn-secondary" type="button">A Button</button>
+                    </div>
+            </div>
+            
+            <div class="container-fluid mt-3">
+                    
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+                    Added to cart
+                    </button>
+            </div>
+        </div>
+      <br>
+
+      <div class="container mt-3">
+        <h2>Create an account</h2>
+        <form action="/action_page.php">
+            <div class="mb-3 mt-3">
+            <label for="Country">Country / Region of residence</label><br>
+            <select id="Country" name="select your Country" class="form-select">
+                <option value=""></option>
+                <option value="Argentina">Argentina</option>
+                <option value="Bahrain">Bahrain</option>
+                <option value="China">China</option>
+                <option value="Dominican Republic">Dominican Republic</option>
+                <option value="Egypt">Egypt</option>
+                <option value="Guatemala">Guatemala</option>
+                <option value="Hong Kong">Hong Kong</option>
+                <option value="India">India</option>
+                <option value="India">Japan</option>
+                <option value="Kuwait">Kuwait</option>
+                <option value="Mexico">Mexico</option>
+                <option value="Nigeria">Nigeria</option>
+                <option value="Peru">Peru</option>
+                <option value="Qatar">Qatar</option>
+                <option value="Rwanda">Rwanda</option>
+                <option value="United Arab Emirates">United Arab Emirates</option>
+                <option value="United State Of America">United State Of America</option>
+                <option value="Vietnama">Vietnama</option>
+                <option value="Zambia">Zambia</option>
+                <option value="Zimbabwe">Zimbabwe</option>
+            </select>
+        </div>
+          <div class="mb-3 mt-3">
+            <label for="email">Your email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+          </div>
+          <div class="mb-3">
+            <label for="pwd">Password</label>
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+          </div>
+          <div class="form-check mb-3">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" name="remember"> Remember me
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div><br>
+
+        <div class="mt-3" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <div class="container-fluid">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section1">Section 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section2">Section 2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section3">Section 3</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div id="section1" class="container-fluid bg-success text-white" style="padding:10px 40px;">
+                <h1>Section 1</h1>
+                <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+                <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+            </div>
+            
+            <div id="section2" class="container-fluid bg-warning" style="padding:10px 40px;">
+                <h1>Section 2</h1>
+                <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+                <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+            </div>
+            
+            <div id="section3" class="container-fluid bg-secondary text-white" style="padding:10px 40px;">
+                <h1>Section 3</h1>
+                <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+                <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+            </div>
+        </div>
+        <br>
+
+        <div>
+            <nav class="navbar navbar-expand-sm bg-info">
+                <div class="container-fluid">
+                    <a href="http://127.0.0.1:5500/bootstrap.html#" class="navbar-brand"><img src="/Pictures/IG logo.webp" alt="Logo" style="width:40px;" class="rounded-pill">
+                    <span class="navbar-text">Car DealerShip</span></a>
+                    
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link 2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link 3</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+    <div class="container mt-3">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#menu1">Menu 1</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#menu2">Menu 2</a>
+            </li>
+        </ul>
+      
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="home" class="container tab-pane active bg-warning"><br>
+            <h3>HOME</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Ut vero necessitatibus eos, dolore magni quis doloremque 
+                sint quae nemo incidunt eligendi ullam! Vel dolorem voluptatem 
+                ipsam explicabo deleniti architecto ab.</p>
+          </div>
+          <!--Issue here-->
+          <div id="menu1" class="container tab-pane fade bg-info"><br>
+            <h3>Menu 1</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Ut vel modi rem iusto, veritatis nesciunt nam quod distinctio, 
+                repellat necessitatibus tenetur quis voluptates ratione maxime 
+                harum! Aspernatur consequuntur placeat id!</p>
+          </div>
+          <div id="menu2" class="container tab-pane fade bg-success"><br>
+            <h3>Menu 2</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+                Maxime amet rerum distinctio assumenda! Laudantium earum at 
+                est eius nam repellat quos odit vitae hic tenetur, placeat 
+                aperiam natus eaque? Repellat?</p>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-3">
+        <!-- Nav pills -->
+        <ul class="nav nav-pills" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="pill" href="#home1">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="pill" href="#menu4">Menu 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="pill" href="#menu5">Menu 2</a>
+          </li>
+        </ul>
+      
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="home1" class="container tab-pane active bg-danger"><br>
+            <h3>HOME</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Ut vero necessitatibus eos, dolore magni quis doloremque 
+                sint quae nemo incidunt eligendi ullam! Vel dolorem voluptatem 
+                ipsam explicabo deleniti architecto ab.</p>
+          </div>
+          <div id="menu4" class="container tab-pane fade bg-info"><br>
+            <h3>Menu 1</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Ut vero necessitatibus eos, dolore magni quis doloremque 
+                sint quae nemo incidunt eligendi ullam! Vel dolorem voluptatem 
+                ipsam explicabo deleniti architecto ab.</p>
+          </div>
+          <div id="menu5" class="container tab-pane fade bg-success"><br>
+            <h3>Menu 2</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Ut vero necessitatibus eos, dolore magni quis doloremque 
+                sint quae nemo incidunt eligendi ullam! Vel dolorem voluptatem 
+                ipsam explicabo deleniti architecto ab.</p>
+          </div>
+        </div>
+      </div>
+      <!--End of NaviBar-->
+      <div class="h1 container mt-3 shadow">
+        <p class="display-1">Three equal width columns</p>
+        <div class="row">
+            <div class="col p-3 bg-primary text-white">Colomns 1</div>
+            <div class="col p-3 bg-dark text-white">Colomn 2</div>
+            <div class="col p-3 bg-primary text-white">Colomn 3</div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="card  bg-info" style="width: 300px;">
+            <img src="/Pictures/bootstrap pp.jpeg" alt="profile" class="card-img-top img-thumbnail bg-success" style="width: 100%;">
+        <!--<div class="card-body">-->
+            <div class="card-body">
+                <h4 class="card-title text-white">Selmy NSHUTI</h4>
+                <p class="card-text text-black">Selmy NSHUTI is a software developer,<br>
+                You can find his work/projects on his GitHub. ,<strong>GitHub</strong></p>
+                <a href="https://github.com/Selmy44" target="blank" class="btn btn-danger">GitHub</a>
+            </div>
+        </div>
+    </div>
+        <div class="container mt-3">
+            <h2>Your favorite car</h2>
+            <form action="/action_page.php">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>
+                <label class="form-check-label" for="check1">Lamborghini</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
+                <label class="form-check-label" for="check2">Rolls Royce</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
+                <label class="form-check-label" for="check2">G-Class Brabus</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
+                <label class="form-check-label" for="check2">Cadillac Escalade</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
+                <label class="form-check-label" for="check2">Tesla Cyber Truck</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" disabled>
+                <label class="form-check-label">Option 3</label>
+              </div>
+            </form>
+          </div>
+
+          <div class="container mt-3">
+            <h2>Are you US citizen</h2>
+            <form action="/action_page.php">
+              <div class="form-check">
+                <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>
+                <label class="form-check-label" for="radio1">Yes</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">
+                <label class="form-check-label" for="radio2">No</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" class="form-check-input" disabled>
+                <label class="form-check-label">Both</label>
+              </div>
+              <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+        </div>
+        <!--menu 1 starts here-->
+    <div class="container mt-3">
+        <div class="btn-group">
+            <button class="btn btn-success">Apple</button>
+            <button class="btn btn-danger">Samsung</button>
+            <div class="btn-group">
+                <button class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown">Sony</button>
+                <ul class="dropdown-menu">
+                    <li><a href="https://www.amazon.com/s?k=tablet&crid=2F5RS3WCNO59X&sprefix=tablet%2Caps%2C441&ref=nb_sb_noss_1" 
+                        target="blank" class="dropdown-item">Tablet</a></li>
+                    <li><a href="https://www.amazon.com/s?k=smartphones&crid=1R7NJ8DPTTU36&sprefix=smart%2Caps%2C441&ref=nb_sb_ss_ts-doa-p_3_5" 
+                        target="blank" class="dropdown-item">smart Phones</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-3">
+        <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo">Attention</button>
+        <div id="demo" class="collapse">Lorem, ipsum dolor sit amet consectetur 
+            adipisicing elit. Ab magni mollitia repellat aut numquam tempora 
+            nulla cumque excepturi, tempore amet aliquid sit natus vitae ullam. 
+            Labore ullam neque fugit hic?</div>
+    </div>
+    <div class="container mt-3">
+        <p><strong>Note:</strong> The <strong>data-bs-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header bg-primary">
+              <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+                Collapsible Group Item #1
+              </a>
+            </div>
+            <div id="collapseOne" class="collapse show bg-info" data-bs-parent="#accordion">
+              <div class="card-body">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header bg-warning">
+              <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+              Collapsible Group Item #2
+            </a>
+            </div>
+            <div id="collapseTwo" class="collapse bg-success" data-bs-parent="#accordion">
+              <div class="card-body">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header bg-danger">
+              <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+                Collapsible Group Item #3
+              </a>
+            </div>
+            <div id="collapseThree" class="collapse bg-dark" data-bs-parent="#accordion">
+              <div class="card-body text-white">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>        
+    <div class="container">
+        <div class="btn-group mt-5">
+            <a href="#" class="btn btn-success">Instagram</a>
+            <a href="#" class="btn btn-info">Youtube</a>
+            <a href="#" class="btn btn-warning">GitHub</a>
+        </div>
+        <div class="btn-group-vertical mt-5">
+            <a href="#" class="btn btn-success">Instagram</a>
+            <a href="#" class="btn btn-info">Youtube</a>
+            <a href="#" class="btn btn-warning">GitHub</a>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <button class="btn btn-primary">
+            <span class="spinner-border spinner-border-sm text-warning"></span>
+        </button>
+        <button class="btn btn-primary">
+            <span class="spinner-border spinner-border-sm"></span>
+            Loading...
+        </button>
+        <button class="btn btn-primary">
+            <span class="spinner-grow spinner-grow-sm text-danger"></span>
+            Loading...
+        </button>
+        <button class="btn btn-primary" disabled>
+            <span class="spinner-border spinner-border-sm"></span>
+            Loading..
+        </button>
+          
+        <button class="btn btn-primary" disabled>
+            <span class="spinner-grow spinner-grow-sm"></span>
+            Loading..
+        </button>
+    </div>
+    <div class="container mt-3">
+        <h2>Badge inside a Button</h2>
+        <button type="button" class="btn btn-primary">
+          Messages <span class="badge bg-danger">4</span>
+        </button>
+        <button type="button" class="btn btn-danger">
+          Notifications <span class="badge bg-dark">7</span>
+        </button>
+      </div>
+
+    <div class="container mt-3">
+    <h1 class="text-white bg-danger">Customer's Informations</h1>
+        <table class="table table-bordered table-hover">
+            <thead class="table-primary">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Telephone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-danger">
+                    <td>Nshuti</td>
+                    <td>Souleiman</td>
+                    <td>0781674354</td>
+                </tr>
+                <tr class="table-info">
+                    <td>Nziza</td>
+                    <td>Icham</td>
+                    <td>0788503640</td>
+                </tr>
+                <tr class="table-warning">
+                    <td>Gatesi</td>
+                    <td>Keilla</td>
+                    <td>0788215510</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container mt-3">
+        <ul class="list-group">
+            <li class="list-group-item active">InshutiGram</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Inbox<span class="badge bg-primary rounded-pill">12</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Ads <span class="badge bg-primary rounded-pill">7</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Junk <span class="badge bg-primary rounded-pill">54</span></li>
+        </ul>
+    </div>
+    <div class="container mt-3">
+        <div class="list-group list-group-numbered">
+            <a href="#" class="list-group-item list-group-item-action active">InshutiGram</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Inbox</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-success">Ads</a>
+            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Junk</a>
+        </div>
+    </div>
+    <div class="container mt-3">
+        <h2>Colored Progress Bars</h2>
+        <p>Use any of the contextual color classes to change the color of the progress bar:</p>
+            <h2>Multiple Progress Bars</h2>
+            <div class="progress" style="height: 30px;">
+              <div class="progress-bar bg-success" style="width:40%">
+                Free Space
+              </div>
+              <div class="progress-bar bg-warning" style="width:10%">
+                Warning
+              </div>
+              <div class="progress-bar bg-danger" style="width:20%">
+                Danger
+              </div>
+            </div>
+          </div>
+          <div class="container mt-5">
+        <!-- Blue -->
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:10%">10%</div>
+        </div><br>
+      
+        <!-- Green -->
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:20%">20%</div>
+        </div><br>
+      
+        <!-- Turquoise -->
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width:30%">30%</div>
+        </div><br>
+      
+        <!-- Orange -->
+        <div class="progress">
+           <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width:40%">40%</div>
+        </div><br>
+      
+        <!-- Red -->
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width:50%">50%</div>
+        </div>
+    <div class="container mt-3">
+        <h2>Alerts</h2>
+        <p>(Alerts are created with the .alert class, followed by a contextual color classes):</p>
+        <h2>Alert Links</h2>
+        <p>(Add the alert-link class to any links inside the alert box to create "matching colored links")</p>
+        <div class="alert alert-success">
+            <strong>Success!</strong> You should <a href="#" class="alert-link">read this message</a>.
+        </div>
+        <div class="alert alert-info">
+            <strong>Info!</strong> You should <a href="#" class="alert-link">read this message</a>.
+        </div>
+        <h3>The button with class="btn-close" and data-bs-dismiss="alert" is used to close the alert box.</h3>
+        <p>(The alert-dismissible class aligns the button to the right)</p>
+        <div class="alert alert-warning alert-dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Warning!</strong> This alert box could indicate a warning that might need attention.
+          </div>
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
+          </div>
+          <div class="alert alert-primary alert-dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Primary!</strong> Indicates an important action.
+          </div>
+        <h2>Animated Alerts</h2>
+        <p>(The .fade and .show classes adds a fading effect when closing the alert message)</p>
+        <div class="alert alert-secondary alert-dismissible fade show">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Secondary!</strong> Indicates a slightly less important action.
+          </div>
+          <div class="alert alert-dark alert-dismissible fade show">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Dark!</strong> Dark grey alert.
+          </div>
+          <div class="alert alert-light alert-dismissible fade show">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Light!</strong> Light grey alert.
+          </div>
+        </div>
+        <div class="container mt-3">
+            <h1>My Logo</h1>
+            <img src="/Pictures/IG logo.webp" alt="logo" class="img-thumbnail mx-auto d-block" width="203" height="203">
+        </div>
+        <div class="container p-5 my-5 border">
+            <h1>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h1>
+        </div>
+        <div class="container p-5 my-5 bg-dark text-white">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit,
+                minima! Laboriosam soluta, tenetur ipsa asperiores, expedita vitae 
+                aliquid hic fuga ullam consequatur mollitia suscipit natus odit doloremque. 
+                Alias, tempora sapiente.</p>
+        </div>
+        <div class="container p-5 my-5 bg-primary text-black">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Id, dolor eveniet repellat voluptate saepe rerum labore neque 
+                nam ipsum quam cumque quasi. Facilis excepturi optio, laudantium 
+                dicta molestias dolorum odit.</p>
+        </div>
+        <div class="container mt-3">
+            <h2>Pagination</h2>
+            <p>Use utilitiy classes to change the alignment of the pagination:</p>                  
+            <ul class="pagination">
+              <li class="page-item active"><a class="page-link" href="javascript:void(0);">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+              <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+              <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
+            </ul>
+            <ul class="pagination justify-content-center">
+              <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
+              <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
+              <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+              <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
+            </ul>
+            <ul class="pagination justify-content-end">
+              <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+              <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+              <li class="page-item active"><a class="page-link" href="javascript:void(0);">Next</a></li>
+            </ul>
+          </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
+</body>
+</html>
