@@ -1,287 +1,287 @@
-const playlistSongs = document.getElementById("playlist-songs");
-const playButton = document.getElementById("play");
-const pauseButton = document.getElementById("pause");
-const nextButton = document.getElementById("next");
-const previousButton = document.getElementById("previous");
-const shuffleButton = document.getElementById("shuffle");
+const startBtn = document.getElementById("start-btn");
+const canvas = document.getElementById("canvas");
+const startScreen = document.querySelector(".start-screen");
+const checkpointScreen = document.querySelector(".checkpoint-screen");
+const checkpointMessage = document.querySelector(".checkpoint-screen > p");
+const ctx = canvas.getContext("2d");
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+const gravity = 0.5;
+let isCheckpointCollisionDetectionActive = true;
 
-const allSongs = [
-  {
-    id: 0,
-    title: "Scratching The Surface",
-    artist: "Quincy Larson",
-    duration: "4:25",
-    src: "https://www.youtube.com/watch?v=Tr4RjTFwjLc&list=RDTr4RjTFwjLc&start_radio=1",
-  },
-  {
-    id: 1,
-    title: "Can't Stay Down",
-    artist: "Quincy Larson",
-    duration: "4:15",
-    src: "https://cdn.freecodecamp.org/curriculum/js-music-player/can't-stay-down.mp3",
-  },
-  {
-    id: 2,
-    title: "Still Learning",
-    artist: "Quincy Larson",
-    duration: "3:51",
-    src: "https://cdn.freecodecamp.org/curriculum/js-music-player/still-learning.mp3",
-  },
-  {
-    id: 3,
-    title: "Cruising for a Musing",
-    artist: "Quincy Larson",
-    duration: "3:34",
-    src: "https://cdn.freecodecamp.org/curriculum/js-music-player/cruising-for-a-musing.mp3",
-  },
-  {
-    id: 4,
-    title: "Never Not Favored",
-    artist: "Quincy Larson",
-    duration: "3:35",
-    src: "https://cdn.freecodecamp.org/curriculum/js-music-player/never-not-favored.mp3",
-  },
-  {
-    id: 5,
-    title: "From the Ground Up",
-    artist: "Quincy Larson",
-    duration: "3:12",
-    src: "https://cdn.freecodecamp.org/curriculum/js-music-player/from-the-ground-up.mp3",
-  },
-  {
-    id: 6,
-    title: "Walking on Air",
-    artist: "Quincy Larson",
-    duration: "3:25",
-    src: "https://cdn.freecodecamp.org/curriculum/js-music-player/walking-on-air.mp3",
-  },
-  {
-    id: 7,
-    title: "Can't Stop Me. Can't Even Slow Me Down.",
-    artist: "Quincy Larson",
-    duration: "3:52",
-    src: "https://cdn.freecodecamp.org/curriculum/js-music-player/cant-stop-me-cant-even-slow-me-down.mp3",
-  },
-  {
-    id: 8,
-    title: "The Surest Way Out is Through",
-    artist: "Quincy Larson",
-    duration: "3:10",
-    src: "https://cdn.freecodecamp.org/curriculum/js-music-player/the-surest-way-out-is-through.mp3",
-  },
-  {
-    id: 9,
-    title: "Chasing That Feeling",
-    artist: "Quincy Larson",
-    duration: "2:43",
-    src: "https://cdn.freecodecamp.org/curriculum/js-music-player/chasing-that-feeling.mp3",
-  },
+const proportionalSize = (size) => {
+  return innerHeight < 500 ? Math.ceil((size / 500) * innerHeight) : size;
+}
+
+class Player {
+  constructor() {
+    this.position = {
+      x: proportionalSize(10),
+      y: proportionalSize(400),
+    };
+    this.velocity = {
+      x: 0,
+      y: 0,
+    };
+    this.width = proportionalSize(40);
+    this.height = proportionalSize(40);
+  }
+  draw() {
+    ctx.fillStyle = "#99c9ff";
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+  }
+  
+  update() {
+    this.draw();
+    this.position.x += this.velocity.x;
+    this.position.y += this.velocity.y;
+
+    if (this.position.y + this.height + this.velocity.y <= canvas.height) {
+      if (this.position.y < 0) {
+        this.position.y = 0;
+        this.velocity.y = gravity;
+      }
+      this.velocity.y += gravity;
+    } else {
+      this.velocity.y = 0;
+    }
+
+    if (this.position.x < this.width) {
+      this.position.x = this.width;
+    }
+
+    if (this.position.x >= canvas.width - this.width * 2) {
+      this.position.x = canvas.width - this.width * 2;
+    }
+  }
+}
+
+class Platform {
+  constructor(x, y) {
+    this.position = {
+      x,
+      y,
+    };
+    this.width = 200;
+    this.height = proportionalSize(40);
+  }
+  draw() {
+    ctx.fillStyle = "#acd157";
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+  }
+}
+
+class CheckPoint {
+  constructor(x, y, z) {
+    this.position = {
+      x,
+      y,
+    };
+    this.width = proportionalSize(40);
+    this.height = proportionalSize(70);
+    this.claimed = false;
+  };
+
+  draw() {
+    ctx.fillStyle = "#f1be32";
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+  }
+  claim() {
+    this.width = 0;
+    this.height = 0;
+    this.position.y = Infinity;
+    this.claimed = true;
+  }
+};
+
+const player = new Player();
+
+const platformPositions = [
+  { x: 500, y: proportionalSize(450) },
+  { x: 700, y: proportionalSize(400) },
+  { x: 850, y: proportionalSize(350) },
+  { x: 900, y: proportionalSize(350) },
+  { x: 1050, y: proportionalSize(150) },
+  { x: 2500, y: proportionalSize(450) },
+  { x: 2900, y: proportionalSize(400) },
+  { x: 3150, y: proportionalSize(350) },
+  { x: 3900, y: proportionalSize(450) },
+  { x: 4200, y: proportionalSize(400) },
+  { x: 4400, y: proportionalSize(200) },
+  { x: 4700, y: proportionalSize(150) },
 ];
 
-const audio = new Audio();
-let userData = {
-  songs: [...allSongs],
-  currentSong: null,
-  songCurrentTime: 0,
-};
+const platforms = platformPositions.map(
+  (platform) => new Platform(platform.x, platform.y)
+);
 
-const playSong = (id) => {
-  const song = userData?.songs.find((song) => song.id === id);
-  audio.src = song.src;
-  audio.title = song.title;
+const checkpointPositions = [
+  { x: 1170, y: proportionalSize(80), z: 1 },
+  { x: 2900, y: proportionalSize(330), z: 2 },
+  { x: 4800, y: proportionalSize(80), z: 3 },
+];
 
-  if (userData?.currentSong === null || userData?.currentSong.id !== song.id) {
-    audio.currentTime = 0;
-  } else {
-    audio.currentTime = userData?.songCurrentTime;
-  }
-  userData.currentSong = song;
-  playButton.classList.add("playing");
+const checkpoints = checkpointPositions.map(
+  (checkpoint) => new CheckPoint(checkpoint.x, checkpoint.y, checkpoint.z)
+);
 
-  highlightCurrentSong();
-  setPlayerDisplay();
-  setPlayButtonAccessibleText();
-  audio.play();
-};
+const animate = () => {
+  requestAnimationFrame(animate);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-const pauseSong = () => {
-  userData.songCurrentTime = audio.currentTime;
-  
-  playButton.classList.remove("playing");
-  audio.pause();
-};
-
-const playNextSong = () => {
-  if (userData?.currentSong === null) {
-    playSong(userData?.songs[0].id);
-  } else {
-    const currentSongIndex = getCurrentSongIndex();
-    const nextSong = userData?.songs[currentSongIndex + 1];
-
-    playSong(nextSong.id);
-  }
-};
-
-const playPreviousSong = () => {
-   if (userData?.currentSong === null) return;
-   else {
-    const currentSongIndex = getCurrentSongIndex();
-    const previousSong = userData?.songs[currentSongIndex - 1];
-
-    playSong(previousSong.id);
-   }
-};
-
-const shuffle = () => {
-  userData?.songs.sort(() => Math.random() - 0.5);
-  userData.currentSong = null;
-  userData.songCurrentTime = 0;
-
-  renderSongs(userData?.songs);
-  pauseSong();
-  setPlayerDisplay();
-  setPlayButtonAccessibleText();
-};
-
-const deleteSong = (id) => {
-  if (userData?.currentSong?.id === id) {
-    userData.currentSong = null;
-    userData.songCurrentTime = 0;
-
-    pauseSong();
-    setPlayerDisplay();
-  }
-
-  userData.songs = userData?.songs.filter((song) => song.id !== id);
-  renderSongs(userData?.songs); 
-  highlightCurrentSong(); 
-  setPlayButtonAccessibleText(); 
-
-  if (userData?.songs.length === 0) {
-    const resetButton = document.createElement("button");
-    const resetText = document.createTextNode("Reset Playlist");
-
-    resetButton.id = "reset";
-    resetButton.ariaLabel = "Reset playlist";
-    resetButton.appendChild(resetText);
-    playlistSongs.appendChild(resetButton);
-
-    resetButton.addEventListener("click", () => {
-      userData.songs = [...allSongs];
-
-      renderSongs(sortSongs()); 
-      setPlayButtonAccessibleText();
-      resetButton.remove();
-    });
-
-  }
-
-};
-
-const setPlayerDisplay = () => {
-  const playingSong = document.getElementById("player-song-title");
-  const songArtist = document.getElementById("player-song-artist");
-  const currentTitle = userData?.currentSong?.title;
-  const currentArtist = userData?.currentSong?.artist;
-
-  playingSong.textContent = currentTitle ? currentTitle : "";
-  songArtist.textContent = currentArtist ? currentArtist : "";
-};
-
-const highlightCurrentSong = () => {
-  const playlistSongElements = document.querySelectorAll(".playlist-song");
-  const songToHighlight = document.getElementById(
-    `song-${userData?.currentSong?.id}`
-  );
-
-  playlistSongElements.forEach((songEl) => {
-    songEl.removeAttribute("aria-current");
+  platforms.forEach((platform) => {
+    platform.draw();
   });
 
-  if (songToHighlight) songToHighlight.setAttribute("aria-current", "true");
-};
-
-const renderSongs = (array) => {
-  const songsHTML = array
-    .map((song)=> {
-      return `
-      <li id="song-${song.id}" class="playlist-song">
-      <button class="playlist-song-info" onclick="playSong(${song.id})">
-          <span class="playlist-song-title">${song.title}</span>
-          <span class="playlist-song-artist">${song.artist}</span>
-          <span class="playlist-song-duration">${song.duration}</span>
-      </button>
-      <button onclick="deleteSong(${song.id})" class="playlist-song-delete" aria-label="Delete ${song.title}">
-          <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8" fill="#4d4d62"/>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M5.32587 5.18571C5.7107 4.90301 6.28333 4.94814 6.60485 5.28651L8 6.75478L9.39515 5.28651C9.71667 4.94814 10.2893 4.90301 10.6741 5.18571C11.059 5.4684 11.1103 5.97188 10.7888 6.31026L9.1832 7.99999L10.7888 9.68974C11.1103 10.0281 11.059 10.5316 10.6741 10.8143C10.2893 11.097 9.71667 11.0519 9.39515 10.7135L8 9.24521L6.60485 10.7135C6.28333 11.0519 5.7107 11.097 5.32587 10.8143C4.94102 10.5316 4.88969 10.0281 5.21121 9.68974L6.8168 7.99999L5.21122 6.31026C4.8897 5.97188 4.94102 5.4684 5.32587 5.18571Z" fill="white"/></svg>
-        </button>
-      </li>
-      `;
-    })
-    .join("");
-
-  playlistSongs.innerHTML = songsHTML;
-};
-
-const setPlayButtonAccessibleText = () => {
-  const song = userData?.currentSong || userData?.songs[0];
-
-  playButton.setAttribute(
-    "aria-label",
-    song?.title ? `Play ${song.title}` : "Play"
-  );
-};
-
-const getCurrentSongIndex = () => userData?.songs.indexOf(userData?.currentSong);
-
-playButton.addEventListener("click", () => {
-    if (userData?.currentSong === null) {
-    playSong(userData?.songs[0].id);
-  } else {
-    playSong(userData?.currentSong.id);
-  }
-});
-
-pauseButton.addEventListener("click",  pauseSong);
-
-nextButton.addEventListener("click", playNextSong);
-
-previousButton.addEventListener("click", playPreviousSong);
-
-shuffleButton.addEventListener("click", shuffle);
-
-audio.addEventListener("ended", () => {
-  const currentSongIndex = getCurrentSongIndex();
-  const nextSongExists = userData?.songs[currentSongIndex + 1] !== undefined;
-
-    if (nextSongExists) {
-      playNextSong();
-    } else {
-      userData.currentSong = null;
-      userData.songCurrentTime = 0;  
-pauseSong();
-setPlayerDisplay();
-highlightCurrentSong();
-setPlayButtonAccessibleText();
-
-    }
-});
-
-const sortSongs = () => {
-  userData?.songs.sort((a,b) => {
-    if (a.title < b.title) {
-      return -1;
-    }
-
-    if (a.title > b.title) {
-      return 1;
-    }
-
-    return 0;
+  checkpoints.forEach(checkpoint => {
+    checkpoint.draw();
   });
 
-  return userData?.songs;
+  player.update();
+
+  if (keys.rightKey.pressed && player.position.x < proportionalSize(400)) {
+    player.velocity.x = 5;
+  } else if (keys.leftKey.pressed && player.position.x > proportionalSize(100)) {
+    player.velocity.x = -5;
+  } else {
+    player.velocity.x = 0;
+
+    if (keys.rightKey.pressed && isCheckpointCollisionDetectionActive) {
+      platforms.forEach((platform) => {
+        platform.position.x -= 5;
+      });
+
+      checkpoints.forEach((checkpoint) => {
+        checkpoint.position.x -= 5;
+      });
+    
+    } else if (keys.leftKey.pressed && isCheckpointCollisionDetectionActive) {
+      platforms.forEach((platform) => {
+        platform.position.x += 5;
+      });
+
+      checkpoints.forEach((checkpoint) => {
+        checkpoint.position.x += 5;
+      });
+    }
+  }
+
+  platforms.forEach((platform) => {
+    const collisionDetectionRules = [
+      player.position.y + player.height <= platform.position.y,
+      player.position.y + player.height + player.velocity.y >= platform.position.y,
+      player.position.x >= platform.position.x - player.width / 2,
+      player.position.x <=
+        platform.position.x + platform.width - player.width / 3,
+    ];
+
+    if (collisionDetectionRules.every((rule) => rule)) {
+      player.velocity.y = 0;
+      return;
+    }
+
+    const platformDetectionRules = [
+      player.position.x >= platform.position.x - player.width / 2,
+      player.position.x <=
+        platform.position.x + platform.width - player.width / 3,
+      player.position.y + player.height >= platform.position.y,
+      player.position.y <= platform.position.y + platform.height,
+    ];
+
+    if (platformDetectionRules.every(rule => rule)) {
+      player.position.y = platform.position.y + player.height;
+      player.velocity.y = gravity;
+    };
+  });
+
+  checkpoints.forEach((checkpoint, index, checkpoints) => {
+    const checkpointDetectionRules = [
+      player.position.x >= checkpoint.position.x,
+      player.position.y >= checkpoint.position.y,
+      player.position.y + player.height <=
+        checkpoint.position.y + checkpoint.height,
+      isCheckpointCollisionDetectionActive,
+      player.position.x - player.width <=
+        checkpoint.position.x - checkpoint.width + player.width * 0.9,
+      index === 0 || checkpoints[index - 1].claimed === true,
+    ];
+
+    if (checkpointDetectionRules.every((rule) => rule)) {
+      checkpoint.claim();
+
+
+      if (index === checkpoints.length - 1) {
+        isCheckpointCollisionDetectionActive = false;
+        showCheckpointScreen("You reached the final checkpoint!");
+        movePlayer("ArrowRight", 0, false);
+      }else if(player.position.x >= checkpoint.position.x && player.position.x <= checkpoint.position.x + 40){
+        showCheckpointScreen("You reached a checkpoint!")
+      }
+
+
+    };
+  });
+}
+
+
+const keys = {
+  rightKey: {
+    pressed: false
+  },
+  leftKey: {
+    pressed: false
+  }
 };
 
-renderSongs(sortSongs());
-setPlayButtonAccessibleText();
+const movePlayer = (key, xVelocity, isPressed) => {
+  if (!isCheckpointCollisionDetectionActive) {
+    player.velocity.x = 0;
+    player.velocity.y = 0;
+    return;
+  }
+
+  switch (key) {
+    case "ArrowLeft":
+      keys.leftKey.pressed = isPressed;
+      if (xVelocity === 0) {
+        player.velocity.x = xVelocity;
+      }
+      player.velocity.x -= xVelocity;
+      break;
+    case "ArrowUp":
+    case " ":
+    case "Spacebar":
+      player.velocity.y -= 8;
+      break;
+    case "ArrowRight":
+      keys.rightKey.pressed = isPressed;
+      if (xVelocity === 0) {
+        player.velocity.x = xVelocity;
+      }
+      player.velocity.x += xVelocity;
+  }
+}
+
+const startGame = () => {
+  canvas.style.display = "block";
+  startScreen.style.display = "none";
+  animate();
+}
+
+const showCheckpointScreen = (msg) => {
+  checkpointScreen.style.display = "block";
+  checkpointMessage.textContent = msg;
+  if (isCheckpointCollisionDetectionActive) {
+    setTimeout(() => (checkpointScreen.style.display = "none"), 2000);
+  }
+};
+
+startBtn.addEventListener("click", startGame);
+
+window.addEventListener("keydown", ({ key }) => {
+  movePlayer(key, 8, true);
+});
+
+window.addEventListener("keyup", ({ key }) => {
+  movePlayer(key, 0, false);
+});
