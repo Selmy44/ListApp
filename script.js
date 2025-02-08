@@ -1,287 +1,108 @@
-const startBtn = document.getElementById("start-btn");
-const canvas = document.getElementById("canvas");
-const startScreen = document.querySelector(".start-screen");
-const checkpointScreen = document.querySelector(".checkpoint-screen");
-const checkpointMessage = document.querySelector(".checkpoint-screen > p");
-const ctx = canvas.getContext("2d");
-canvas.width = innerWidth;
-canvas.height = innerHeight;
-const gravity = 0.5;
-let isCheckpointCollisionDetectionActive = true;
-
-const proportionalSize = (size) => {
-  return innerHeight < 500 ? Math.ceil((size / 500) * innerHeight) : size;
-}
-
-class Player {
-  constructor() {
-    this.position = {
-      x: proportionalSize(10),
-      y: proportionalSize(400),
-    };
-    this.velocity = {
-      x: 0,
-      y: 0,
-    };
-    this.width = proportionalSize(40);
-    this.height = proportionalSize(40);
-  }
-  draw() {
-    ctx.fillStyle = "#99c9ff";
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-  }
+document.getElementById("search-button").addEventListener("click", async () => {
+    const searchInput = document.getElementById("search-input");
+    const query = searchInput.value.trim();
   
-  update() {
-    this.draw();
-    this.position.x += this.velocity.x;
-    this.position.y += this.velocity.y;
-
-    if (this.position.y + this.height + this.velocity.y <= canvas.height) {
-      if (this.position.y < 0) {
-        this.position.y = 0;
-        this.velocity.y = gravity;
-      }
-      this.velocity.y += gravity;
-    } else {
-      this.velocity.y = 0;
-    }
-
-    if (this.position.x < this.width) {
-      this.position.x = this.width;
-    }
-
-    if (this.position.x >= canvas.width - this.width * 2) {
-      this.position.x = canvas.width - this.width * 2;
-    }
-  }
-}
-
-class Platform {
-  constructor(x, y) {
-    this.position = {
-      x,
-      y,
-    };
-    this.width = 200;
-    this.height = proportionalSize(40);
-  }
-  draw() {
-    ctx.fillStyle = "#acd157";
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-  }
-}
-
-class CheckPoint {
-  constructor(x, y, z) {
-    this.position = {
-      x,
-      y,
-    };
-    this.width = proportionalSize(40);
-    this.height = proportionalSize(70);
-    this.claimed = false;
-  };
-
-  draw() {
-    ctx.fillStyle = "#f1be32";
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-  }
-  claim() {
-    this.width = 0;
-    this.height = 0;
-    this.position.y = Infinity;
-    this.claimed = true;
-  }
-};
-
-const player = new Player();
-
-const platformPositions = [
-  { x: 500, y: proportionalSize(450) },
-  { x: 700, y: proportionalSize(400) },
-  { x: 850, y: proportionalSize(350) },
-  { x: 900, y: proportionalSize(350) },
-  { x: 1050, y: proportionalSize(150) },
-  { x: 2500, y: proportionalSize(450) },
-  { x: 2900, y: proportionalSize(400) },
-  { x: 3150, y: proportionalSize(350) },
-  { x: 3900, y: proportionalSize(450) },
-  { x: 4200, y: proportionalSize(400) },
-  { x: 4400, y: proportionalSize(200) },
-  { x: 4700, y: proportionalSize(150) },
-];
-
-const platforms = platformPositions.map(
-  (platform) => new Platform(platform.x, platform.y)
-);
-
-const checkpointPositions = [
-  { x: 1170, y: proportionalSize(80), z: 1 },
-  { x: 2900, y: proportionalSize(330), z: 2 },
-  { x: 4800, y: proportionalSize(80), z: 3 },
-];
-
-const checkpoints = checkpointPositions.map(
-  (checkpoint) => new CheckPoint(checkpoint.x, checkpoint.y, checkpoint.z)
-);
-
-const animate = () => {
-  requestAnimationFrame(animate);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  platforms.forEach((platform) => {
-    platform.draw();
-  });
-
-  checkpoints.forEach(checkpoint => {
-    checkpoint.draw();
-  });
-
-  player.update();
-
-  if (keys.rightKey.pressed && player.position.x < proportionalSize(400)) {
-    player.velocity.x = 5;
-  } else if (keys.leftKey.pressed && player.position.x > proportionalSize(100)) {
-    player.velocity.x = -5;
-  } else {
-    player.velocity.x = 0;
-
-    if (keys.rightKey.pressed && isCheckpointCollisionDetectionActive) {
-      platforms.forEach((platform) => {
-        platform.position.x -= 5;
-      });
-
-      checkpoints.forEach((checkpoint) => {
-        checkpoint.position.x -= 5;
-      });
-    
-    } else if (keys.leftKey.pressed && isCheckpointCollisionDetectionActive) {
-      platforms.forEach((platform) => {
-        platform.position.x += 5;
-      });
-
-      checkpoints.forEach((checkpoint) => {
-        checkpoint.position.x += 5;
-      });
-    }
-  }
-
-  platforms.forEach((platform) => {
-    const collisionDetectionRules = [
-      player.position.y + player.height <= platform.position.y,
-      player.position.y + player.height + player.velocity.y >= platform.position.y,
-      player.position.x >= platform.position.x - player.width / 2,
-      player.position.x <=
-        platform.position.x + platform.width - player.width / 3,
-    ];
-
-    if (collisionDetectionRules.every((rule) => rule)) {
-      player.velocity.y = 0;
+    // Clear previous data
+    clearData();
+  
+    // Step 14: If the input is "Red", show an alert
+    if (query === "Red") {
+      alert("Pokémon not found");
       return;
     }
-
-    const platformDetectionRules = [
-      player.position.x >= platform.position.x - player.width / 2,
-      player.position.x <=
-        platform.position.x + platform.width - player.width / 3,
-      player.position.y + player.height >= platform.position.y,
-      player.position.y <= platform.position.y + platform.height,
-    ];
-
-    if (platformDetectionRules.every(rule => rule)) {
-      player.position.y = platform.position.y + player.height;
-      player.velocity.y = gravity;
-    };
+  
+    try {
+      // Use the freeCodeCamp PokéAPI Proxy (here we use the standard PokéAPI)
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query.toLowerCase()}`);
+      
+      if (!response.ok) {
+        throw new Error("Pokémon not found");
+      }
+      
+      const data = await response.json();
+  
+      // Populate Pokémon details
+  
+      // Name in uppercase
+      document.getElementById("pokemon-name").textContent = data.name.toUpperCase();
+  
+      // Pokémon id. You can choose to include a "#" or not.
+      document.getElementById("pokemon-id").textContent = "#" + data.id;
+  
+      // Weight and height with labels (if you prefer just the number, you can remove the labels)
+      document.getElementById("weight").textContent = "Weight: " + data.weight;
+      document.getElementById("height").textContent = "Height: " + data.height;
+  
+      // Stats (hp, attack, defense, special-attack, special-defense, speed)
+      data.stats.forEach((stat) => {
+        switch (stat.stat.name) {
+          case "hp":
+            document.getElementById("hp").textContent = stat.base_stat;
+            break;
+          case "attack":
+            document.getElementById("attack").textContent = stat.base_stat;
+            break;
+          case "defense":
+            document.getElementById("defense").textContent = stat.base_stat;
+            break;
+          case "special-attack":
+            document.getElementById("special-attack").textContent = stat.base_stat;
+            break;
+          case "special-defense":
+            document.getElementById("special-defense").textContent = stat.base_stat;
+            break;
+          case "speed":
+            document.getElementById("speed").textContent = stat.base_stat;
+            break;
+        }
+      });
+  
+      // Clear the types element first (Step 17 & 20)
+      const typesContainer = document.getElementById("types");
+      typesContainer.innerHTML = "";
+      // Add one or more type elements based on the Pokémon's types
+      data.types.forEach((typeInfo) => {
+        const typeSpan = document.createElement("span");
+        typeSpan.textContent = typeInfo.type.name.toUpperCase();
+        typesContainer.appendChild(typeSpan);
+      });
+  
+      // Add the sprite image (Step 16 & 19)
+      // First remove any existing sprite if present
+      const existingSprite = document.getElementById("sprite");
+      if (existingSprite) {
+        existingSprite.remove();
+      }
+      const spriteContainer = document.getElementById("sprite-container");
+      const spriteImg = document.createElement("img");
+      spriteImg.id = "sprite";
+      spriteImg.src = data.sprites.front_default;
+      spriteImg.alt = data.name + " sprite";
+      spriteContainer.appendChild(spriteImg);
+    } catch (error) {
+      // For any errors (e.g., Pokémon not found), show an alert
+      alert("Pokémon not found");
+    }
   });
-
-  checkpoints.forEach((checkpoint, index, checkpoints) => {
-    const checkpointDetectionRules = [
-      player.position.x >= checkpoint.position.x,
-      player.position.y >= checkpoint.position.y,
-      player.position.y + player.height <=
-        checkpoint.position.y + checkpoint.height,
-      isCheckpointCollisionDetectionActive,
-      player.position.x - player.width <=
-        checkpoint.position.x - checkpoint.width + player.width * 0.9,
-      index === 0 || checkpoints[index - 1].claimed === true,
-    ];
-
-    if (checkpointDetectionRules.every((rule) => rule)) {
-      checkpoint.claim();
-
-
-      if (index === checkpoints.length - 1) {
-        isCheckpointCollisionDetectionActive = false;
-        showCheckpointScreen("You reached the final checkpoint!");
-        movePlayer("ArrowRight", 0, false);
-      }else if(player.position.x >= checkpoint.position.x && player.position.x <= checkpoint.position.x + 40){
-        showCheckpointScreen("You reached a checkpoint!")
-      }
-
-
-    };
-  });
-}
-
-
-const keys = {
-  rightKey: {
-    pressed: false
-  },
-  leftKey: {
-    pressed: false
+  
+  // Helper function to clear previous search data
+  function clearData() {
+    document.getElementById("pokemon-name").textContent = "";
+    document.getElementById("pokemon-id").textContent = "";
+    document.getElementById("weight").textContent = "";
+    document.getElementById("height").textContent = "";
+    document.getElementById("hp").textContent = "";
+    document.getElementById("attack").textContent = "";
+    document.getElementById("defense").textContent = "";
+    document.getElementById("special-attack").textContent = "";
+    document.getElementById("special-defense").textContent = "";
+    document.getElementById("speed").textContent = "";
+    document.getElementById("types").innerHTML = "";
+  
+    // Remove existing sprite image if it exists
+    const existingSprite = document.getElementById("sprite");
+    if (existingSprite) {
+      existingSprite.remove();
+    }
   }
-};
-
-const movePlayer = (key, xVelocity, isPressed) => {
-  if (!isCheckpointCollisionDetectionActive) {
-    player.velocity.x = 0;
-    player.velocity.y = 0;
-    return;
-  }
-
-  switch (key) {
-    case "ArrowLeft":
-      keys.leftKey.pressed = isPressed;
-      if (xVelocity === 0) {
-        player.velocity.x = xVelocity;
-      }
-      player.velocity.x -= xVelocity;
-      break;
-    case "ArrowUp":
-    case " ":
-    case "Spacebar":
-      player.velocity.y -= 8;
-      break;
-    case "ArrowRight":
-      keys.rightKey.pressed = isPressed;
-      if (xVelocity === 0) {
-        player.velocity.x = xVelocity;
-      }
-      player.velocity.x += xVelocity;
-  }
-}
-
-const startGame = () => {
-  canvas.style.display = "block";
-  startScreen.style.display = "none";
-  animate();
-}
-
-const showCheckpointScreen = (msg) => {
-  checkpointScreen.style.display = "block";
-  checkpointMessage.textContent = msg;
-  if (isCheckpointCollisionDetectionActive) {
-    setTimeout(() => (checkpointScreen.style.display = "none"), 2000);
-  }
-};
-
-startBtn.addEventListener("click", startGame);
-
-window.addEventListener("keydown", ({ key }) => {
-  movePlayer(key, 8, true);
-});
-
-window.addEventListener("keyup", ({ key }) => {
-  movePlayer(key, 0, false);
-});
+  
