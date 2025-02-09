@@ -1,108 +1,231 @@
-document.getElementById("search-button").addEventListener("click", async () => {
-    const searchInput = document.getElementById("search-input");
-    const query = searchInput.value.trim();
-  
-    // Clear previous data
-    clearData();
-  
-    // Step 14: If the input is "Red", show an alert
-    if (query === "Red") {
-      alert("Pokémon not found");
-      return;
-    }
-  
-    try {
-      // Use the freeCodeCamp PokéAPI Proxy (here we use the standard PokéAPI)
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query.toLowerCase()}`);
-      
-      if (!response.ok) {
-        throw new Error("Pokémon not found");
-      }
-      
-      const data = await response.json();
-  
-      // Populate Pokémon details
-  
-      // Name in uppercase
-      document.getElementById("pokemon-name").textContent = data.name.toUpperCase();
-  
-      // Pokémon id. You can choose to include a "#" or not.
-      document.getElementById("pokemon-id").textContent = "#" + data.id;
-  
-      // Weight and height with labels (if you prefer just the number, you can remove the labels)
-      document.getElementById("weight").textContent = "Weight: " + data.weight;
-      document.getElementById("height").textContent = "Height: " + data.height;
-  
-      // Stats (hp, attack, defense, special-attack, special-defense, speed)
-      data.stats.forEach((stat) => {
-        switch (stat.stat.name) {
-          case "hp":
-            document.getElementById("hp").textContent = stat.base_stat;
-            break;
-          case "attack":
-            document.getElementById("attack").textContent = stat.base_stat;
-            break;
-          case "defense":
-            document.getElementById("defense").textContent = stat.base_stat;
-            break;
-          case "special-attack":
-            document.getElementById("special-attack").textContent = stat.base_stat;
-            break;
-          case "special-defense":
-            document.getElementById("special-defense").textContent = stat.base_stat;
-            break;
-          case "speed":
-            document.getElementById("speed").textContent = stat.base_stat;
-            break;
-        }
-      });
-  
-      // Clear the types element first (Step 17 & 20)
-      const typesContainer = document.getElementById("types");
-      typesContainer.innerHTML = "";
-      // Add one or more type elements based on the Pokémon's types
-      data.types.forEach((typeInfo) => {
-        const typeSpan = document.createElement("span");
-        typeSpan.textContent = typeInfo.type.name.toUpperCase();
-        typesContainer.appendChild(typeSpan);
-      });
-  
-      // Add the sprite image (Step 16 & 19)
-      // First remove any existing sprite if present
-      const existingSprite = document.getElementById("sprite");
-      if (existingSprite) {
-        existingSprite.remove();
-      }
-      const spriteContainer = document.getElementById("sprite-container");
-      const spriteImg = document.createElement("img");
-      spriteImg.id = "sprite";
-      spriteImg.src = data.sprites.front_default;
-      spriteImg.alt = data.name + " sprite";
-      spriteContainer.appendChild(spriteImg);
-    } catch (error) {
-      // For any errors (e.g., Pokémon not found), show an alert
-      alert("Pokémon not found");
-    }
+const listOfAllDice = document.querySelectorAll(".die");
+const scoreInputs = document.querySelectorAll("#score-options input");
+const scoreSpans = document.querySelectorAll("#score-options span");
+const roundElement = document.getElementById("current-round");
+const rollsElement = document.getElementById("current-round-rolls");
+const totalScoreElement = document.getElementById("total-score");
+const scoreHistory = document.getElementById("score-history");
+const rollDiceBtn = document.getElementById("roll-dice-btn");
+const keepScoreBtn = document.getElementById("keep-score-btn");
+const rulesContainer = document.querySelector(".rules-container");
+const rulesBtn = document.getElementById("rules-btn");
+
+let diceValuesArr = [];
+let isModalShowing = false;
+let score = 0;
+let round = 1;
+let rolls = 0;
+
+const rollDice = () => {
+  diceValuesArr = [];
+
+  for (let i = 0; i < 5; i++) {
+    const randomDice = Math.floor(Math.random() * 6) + 1;
+    diceValuesArr.push(randomDice);
+  };
+
+  listOfAllDice.forEach((dice, index) => {
+    dice.textContent = diceValuesArr[index];
   });
-  
-  // Helper function to clear previous search data
-  function clearData() {
-    document.getElementById("pokemon-name").textContent = "";
-    document.getElementById("pokemon-id").textContent = "";
-    document.getElementById("weight").textContent = "";
-    document.getElementById("height").textContent = "";
-    document.getElementById("hp").textContent = "";
-    document.getElementById("attack").textContent = "";
-    document.getElementById("defense").textContent = "";
-    document.getElementById("special-attack").textContent = "";
-    document.getElementById("special-defense").textContent = "";
-    document.getElementById("speed").textContent = "";
-    document.getElementById("types").innerHTML = "";
-  
-    // Remove existing sprite image if it exists
-    const existingSprite = document.getElementById("sprite");
-    if (existingSprite) {
-      existingSprite.remove();
+};
+
+const updateStats = () => {
+  rollsElement.textContent = rolls;
+  roundElement.textContent = round;
+};
+
+const updateRadioOption = (index, score) => {
+  scoreInputs[index].disabled = false;
+  scoreInputs[index].value = score;
+  scoreSpans[index].textContent = `, score = ${score}`;
+};
+
+const updateScore = (selectedValue, achieved) => {
+  score += parseInt(selectedValue);
+  totalScoreElement.textContent = score;
+
+  scoreHistory.innerHTML += `<li>${achieved} : ${selectedValue}</li>`;
+};
+
+const getHighestDuplicates = (arr) => {
+  const counts = {};
+
+  for (const num of arr) {
+    if (counts[num]) {
+      counts[num]++;
+    } else {
+      counts[num] = 1;
     }
   }
+
+  let highestCount = 0;
+
+  for (const num of arr) {
+    const count = counts[num];
+    if (count >= 3 && count > highestCount) {
+      highestCount = count;
+    }
+    if (count >= 4 && count > highestCount) {
+      highestCount = count;
+    }
+  }
+
+  const sumOfAllDice = arr.reduce((a, b) => a + b, 0);
+
+  if (highestCount >= 4) {
+    updateRadioOption(1, sumOfAllDice);
+  }
+
+  if (highestCount >= 3) {
+    updateRadioOption(0, sumOfAllDice);
+  }
+
+  updateRadioOption(5, 0);
+};
+
+const detectFullHouse = (arr) => {
+  const counts = {};
+
+  for (const num of arr) {
+    counts[num] = counts[num] ? counts[num] + 1 : 1;
+  }
+
+  const hasThreeOfAKind = Object.values(counts).includes(3);
+  const hasPair = Object.values(counts).includes(2);
+
+  if (hasThreeOfAKind && hasPair) {
+    updateRadioOption(2, 25);
+  }
+
+  updateRadioOption(5, 0);
+};
+
+const resetRadioOptions = () => {
+  scoreInputs.forEach((input) => {
+    input.disabled = true;
+    input.checked = false;
+  });
+
+  scoreSpans.forEach((span) => {
+    span.textContent = "";
+  });
+};
+
+const resetGame = () => {
+  diceValuesArr = [0, 0, 0, 0, 0];
+  score = 0;
+  round = 1;
+  rolls = 0;
+
+  listOfAllDice.forEach((dice, index) => {
+    dice.textContent = diceValuesArr[index];
+  });
+
+  totalScoreElement.textContent = score;
+  scoreHistory.innerHTML = "";
+
+  rollsElement.textContent = rolls;
+  roundElement.textContent = round;
+
+  resetRadioOptions();
+};
+
+const checkForStraights = (arr) => {
+  // Remove duplicates and sort the dice values
+  const uniqueSorted = [...new Set(arr)].sort((a, b) => a - b);
   
+  // Convert to a string for easy pattern matching
+  const strValues = uniqueSorted.join("");
+
+  // Define patterns for small and large straights
+  const smallStraights = ["1234", "2345", "3456"];
+  const largeStraights = ["12345", "23456"];
+
+  // Check for large straight first
+  if (largeStraights.some(straight => strValues.includes(straight))) {
+    updateRadioOption(4, 40); // 5th radio button (index 4) for large straight
+    updateRadioOption(3, 30); // 4th radio button (index 3) should also be enabled and set to 30
+    return;
+  }
+
+  // Check for small straight
+  if (smallStraights.some(straight => strValues.includes(straight))) {
+    updateRadioOption(3, 30); // 4th radio button (index 3) for small straight
+    return;
+  }
+
+  // If no straight is found, update last radio button (index 5) with 0
+  updateRadioOption(5, 0);
+};
+
+// Call checkForStraights when rolling dice
+rollDiceBtn.addEventListener("click", () => {
+  if (rolls === 3) {
+    alert("You have made three rolls this round. Please select a score.");
+  } else {
+    rolls++;
+    resetRadioOptions();
+    rollDice();
+    updateStats();
+    getHighestDuplicates(diceValuesArr);
+    detectFullHouse(diceValuesArr);
+    checkForStraights(diceValuesArr);
+  }
+});
+
+
+rollDiceBtn.addEventListener("click", () => {
+  if (rolls === 3) {
+    alert("You have made three rolls this round. Please select a score.");
+  } else {
+    rolls++;
+    resetRadioOptions();
+    rollDice();
+    updateStats();
+    getHighestDuplicates(diceValuesArr);
+    detectFullHouse(diceValuesArr);
+checkForStraights(diceValuesArr);
+
+  }
+});
+
+rulesBtn.addEventListener("click", () => {
+  isModalShowing = !isModalShowing;
+
+  if (isModalShowing) {
+    rulesBtn.textContent = "Hide rules";
+    rulesContainer.style.display = "block";
+  } else {
+    rulesBtn.textContent = "Show rules";
+    rulesContainer.style.display = "none";
+  }
+});
+
+keepScoreBtn.addEventListener("click", () => {
+  let selectedValue;
+  let achieved;
+
+  for (const radioButton of scoreInputs) {
+    if (radioButton.checked) {
+      selectedValue = radioButton.value;
+      achieved = radioButton.id;
+      break;
+    }
+  }
+
+  if (selectedValue) {
+    rolls = 0;
+    round++;
+    updateStats();
+    resetRadioOptions();
+    updateScore(selectedValue, achieved);
+    if (round > 6) {
+      setTimeout(() => {
+        alert(`Game Over! Your total score is ${score}`);
+        resetGame();
+      }, 500);
+    }
+  } else {
+    alert("Please select an option or roll the dice");
+  }
+});
