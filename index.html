@@ -4,35 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fCC Forum Leaderboard</title>
+    <title>freeCodeCamp Shopping Cart</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <header>
-      <nav>
-        <img
-          class="fcc-logo"
-          src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg"
-          alt="freeCodeCamp logo"
-        />
-      </nav>
-      <h1 class="title">Latest Topics</h1>
+      <h1 class="title">Desserts Page</h1>
     </header>
     <main>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th id="topics">Topics</th>
-              <th id="avatars">Avatars</th>
-              <th id="replies">Replies</th>
-              <th id="views">Views</th>
-              <th id="activity">Activity</th>
-            </tr>
-          </thead>
-          <tbody id="posts-container"></tbody>
-        </table>
+      <button id="cart-btn" type="button" class="btn">
+        <span id="show-hide-cart">Show</span> Cart
+      </button>
+      <div id="cart-container">
+        <button class="btn" id="clear-cart-btn">Clear Cart</button>
+        <div id="products-container"></div>
+        <p>Total number of items: <span id="total-items">0</span></p>
+        <p>Subtotal: <span id="subtotal">$0</span></p>
+        <p>Taxes: <span id="taxes">$0</span></p>
+        <p>Total: <span id="total">$0</span></p>
       </div>
+      <div id="dessert-card-container"></div>
     </main>
     <script src="./script.js"></script>
   </body>
