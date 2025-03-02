@@ -4,32 +4,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Learn Intermediate OOP by Building a Platformer Game</title>
+    <title>freeCodeCamp Shopping Cart</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="start-screen">
-      <h1 class="main-title">freeCodeCamp Code Warrior</h1>
-      <p class="instructions">
-        Help the main player navigate to the yellow checkpoints.
-      </p>
-      <p class="instructions">
-        Use the keyboard arrows to move the player around.
-      </p>
-      <p class="instructions">You can also use the spacebar to jump.</p>
-
-      <div class="btn-container">
-        <button class="btn" id="start-btn">Start Game</button>
+    <header>
+      <h1 class="title">Desserts Page</h1>
+    </header>
+    <main>
+      <button id="cart-btn" type="button" class="btn">
+        <span id="show-hide-cart">Show</span> Cart
+      </button>
+      <div id="cart-container">
+        <button class="btn" id="clear-cart-btn">Clear Cart</button>
+        <div id="products-container"></div>
+        <p>Total number of items: <span id="total-items">0</span></p>
+        <p>Subtotal: <span id="subtotal">$0</span></p>
+        <p>Taxes: <span id="taxes">$0</span></p>
+        <p>Total: <span id="total">$0</span></p>
       </div>
-    </div>
-
-    <div class="checkpoint-screen">
-      <h2>Congrats!</h2>
-      <p>You reached the last checkpoint.</p>
-    </div>
-
-    <canvas id="canvas"></canvas>
-
+      <div id="dessert-card-container"></div>
+    </main>
     <script src="./script.js"></script>
   </body>
 </html>
