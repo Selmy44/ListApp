@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Telephone Number Validator</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Telephone Number Validator</h1>
-    <label for="user-input">Enter a US Phone Number:</label>
-    <input type="text" id="user-input">
-    <button id="check-btn">Check</button>
-    <button id="clear-btn">Clear</button>
-    <div id="results-div"></div>
-  </div>
+    <header>
+        <h1>freeCodeCamp(🔥)</h1>
+    </header>
 
-  <script src="script.js"></script>
+    <main>
+        <h2>Is it a Palindrome?</h2>
+        <div class="input-container">
+            <label for="text-input">Enter in text to check for a palindrome:</label>
+            <input type="text" id="text-input" placeholder="Type here..." />
+            <button id="check-btn">Check</button>
+        </div>
+        <div id="result"></div>
+    </main>
+
+    <section class="info-box">
+        <p>💡 <em>A <strong>palindrome</strong></em> is a word or sentence that's spelled the same way both forward and backward, ignoring punctuation, case, and spacing.</p>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
